@@ -9,17 +9,16 @@ import (
 )
 
 func TestText_Report(t *testing.T) {
-	findings := []scanner.Finding{
-		{
-			File:        "/test/file.json",
-			Line:        10,
-			KeyPath:     "api.token",
-			RuleID:      "github-token",
-			RuleDesc:    "GitHub Token",
-			Severity:    "critical",
-			SecretValue: "ghp_****",
-		},
+	finding := scanner.Finding{
+		File:       "/test/file.json",
+		Line:       10,
+		KeyPath:    "api.token",
+		RuleID:     "github-token",
+		RuleDesc:   "GitHub Token",
+		Severity:   "critical",
+		SecretHash: "abc123def456",
 	}
+	findings := []scanner.Finding{finding}
 
 	t.Run("normal output", func(t *testing.T) {
 		var buf bytes.Buffer
@@ -70,16 +69,15 @@ func TestText_Report(t *testing.T) {
 }
 
 func TestJSON_Report(t *testing.T) {
-	findings := []scanner.Finding{
-		{
-			File:        "/test/file.json",
-			KeyPath:     "api.token",
-			RuleID:      "github-token",
-			RuleDesc:    "GitHub Token",
-			Severity:    "critical",
-			SecretValue: "ghp_****",
-		},
+	finding := scanner.Finding{
+		File:       "/test/file.json",
+		KeyPath:    "api.token",
+		RuleID:     "github-token",
+		RuleDesc:   "GitHub Token",
+		Severity:   "critical",
+		SecretHash: "abc123def456",
 	}
+	findings := []scanner.Finding{finding}
 
 	var buf bytes.Buffer
 	r := NewJSON()
@@ -100,16 +98,15 @@ func TestJSON_Report(t *testing.T) {
 }
 
 func TestSARIF_Report(t *testing.T) {
-	findings := []scanner.Finding{
-		{
-			File:        "/test/file.json",
-			Line:        10,
-			RuleID:      "github-token",
-			RuleDesc:    "GitHub Token",
-			Severity:    "critical",
-			SecretValue: "ghp_****",
-		},
+	finding := scanner.Finding{
+		File:       "/test/file.json",
+		Line:       10,
+		RuleID:     "github-token",
+		RuleDesc:   "GitHub Token",
+		Severity:   "critical",
+		SecretHash: "abc123def456",
 	}
+	findings := []scanner.Finding{finding}
 
 	var buf bytes.Buffer
 	r := NewSARIF()
