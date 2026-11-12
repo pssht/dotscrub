@@ -1,0 +1,6 @@
+# Codex agent configuration
+[api]
+token = "ghp_fakefaketoken1234567890123456789012"
+
+[github]
+personal_access_token = "ghp_anotherfaketoken123456789012345678"

@@ -1,0 +1,8 @@
+- id: dotscrub
+  name: dotscrub secret scanner
+  description: Scan for secrets in AI agent config files
+  entry: dotscrub scan --staged
+  language: golang
+  pass_filenames: false
+  additional_dependencies: []
+  files: \.(json|yaml|yml|toml|jsonl)$
