@@ -1,0 +1,81 @@
+name: 'dotscrub Secret Scanner'
+description: 'Scan for secrets in AI agent configuration files'
+author: 'Pssht Project'
+
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  paths:
+    description: 'Paths to scan (space-separated)'
+    required: false
+    default: '.'
+  
+  format:
+    description: 'Output format: text, json, or sarif'
+    required: false
+    default: 'text'
+  
+  fail-on-findings:
+    description: 'Fail the action if secrets are found'
+    required: false
+    default: 'true'
+  
+  upload-sarif:
+    description: 'Upload SARIF results to GitHub Security'
+    required: false
+    default: 'false'
+
+outputs:
+  findings-count:
+    description: 'Number of secrets found'
+    value: ${{ steps.scan.outputs.count }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
+        cache: false
+
+    - name: Install dotscrub
+      shell: bash
+      run: go install github.com/pssht/dotscrub/cmd/dotscrub@latest
+
+    - name: Run dotscrub scan
+      id: scan
+      shell: bash
+      run: |
+        set +e
+        if [ "${{ inputs.upload-sarif }}" = "true" ]; then
+          dotscrub scan ${{ inputs.paths }} --format sarif --output dotscrub.sarif
+          SCAN_EXIT=$?
+          FINDINGS=$(jq '[.runs[].results[]] | length' dotscrub.sarif)
+        else
+          OUTPUT=$(dotscrub scan ${{ inputs.paths }} --format ${{ inputs.format }})
+          SCAN_EXIT=$?
+          echo "$OUTPUT"
+          FINDINGS=0
+          if [ $SCAN_EXIT -ne 0 ]; then
+            FINDINGS=$(echo "$OUTPUT" | grep -oP 'Found \K\d+' || echo "0")
+          fi
+        fi
+        
+        echo "count=$FINDINGS" >> $GITHUB_OUTPUT
+        
+        if [ "${{ inputs.fail-on-findings }}" = "true" ] && [ $SCAN_EXIT -ne 0 ]; then
+          echo "::error::Found $FINDINGS secret(s) in AI agent config files"
+          exit 1
+        fi
+        
+        exit 0
+
+    - name: Upload SARIF results
+      if: inputs.upload-sarif == 'true'
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: dotscrub.sarif
+        category: dotscrub

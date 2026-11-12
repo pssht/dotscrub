@@ -1,0 +1,38 @@
+agents:
+  - name: "Cursor"
+    locations:
+      - ".cursor/mcp.json"
+      - ".cursor/rules"
+      - ".cursor/memory"
+      - "Library/Application Support/Cursor/User/globalStorage/mcp.json"
+  
+  - name: "Claude Desktop"
+    locations:
+      - ".config/Claude/claude_desktop_config.json"
+      - "Library/Application Support/Claude/claude_desktop_config.json"
+      - "AppData/Roaming/Claude/config/claude_desktop_config.json"
+  
+  - name: "Claude CLI"
+    locations:
+      - ".claude/settings.json"
+      - ".claude/config.json"
+  
+  - name: "Codex"
+    locations:
+      - ".config/codex/config.toml"
+      - "Library/Application Support/codex/config.toml"
+      - "AppData/Roaming/codex/config.toml"
+  
+  - name: "Aider"
+    locations:
+      - ".aider.conf.yml"
+      - ".aider.model.settings.yml"
+  
+  - name: "Continue"
+    locations:
+      - ".continue/config.json"
+      - ".continue/config.ts"
+  
+  - name: "Cody"
+    locations:
+      - ".config/cody/config.json"
