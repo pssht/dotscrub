@@ -101,14 +101,35 @@ func TestMaskSecret(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := maskSecret(tt.secret)
+			f := Finding{secretValue: tt.secret}
+			got := f.MaskedSecret()
 			if len(got) < 3 {
-				t.Errorf("maskSecret() = %v, too short", got)
+				t.Errorf("MaskedSecret() = %v, too short", got)
 			}
 			if !strings.Contains(got, "*") {
-				t.Errorf("maskSecret() = %v, should contain asterisks", got)
+				t.Errorf("MaskedSecret() = %v, should contain asterisks", got)
 			}
-			t.Logf("maskSecret(%q) = %q", tt.secret, got)
+			t.Logf("MaskedSecret(%q) = %q", tt.secret, got)
 		})
+	}
+}
+
+func TestHashSecret(t *testing.T) {
+	secret := "ghp_1234567890123456789012345678901234"
+	hash1 := hashSecret(secret)
+	hash2 := hashSecret(secret)
+	
+	if hash1 != hash2 {
+		t.Errorf("hashSecret should be deterministic: %s != %s", hash1, hash2)
+	}
+	
+	if len(hash1) != 16 {
+		t.Errorf("hash should be 16 chars, got %d", len(hash1))
+	}
+	
+	differentSecret := "ghp_9876543210987654321098765432109876"
+	hash3 := hashSecret(differentSecret)
+	if hash1 == hash3 {
+		t.Errorf("different secrets should have different hashes")
 	}
 }

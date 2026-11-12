@@ -17,7 +17,7 @@ func NewText(verbose bool) *Text {
 
 func (t *Text) Report(w io.Writer, findings []scanner.Finding) error {
 	if len(findings) == 0 {
-		fmt.Fprintln(w, "✓ No secrets found")
+		fmt.Fprintln(w, "No secrets found")
 		return nil
 	}
 
@@ -36,7 +36,8 @@ func (t *Text) Report(w io.Writer, findings []scanner.Finding) error {
 		
 		if t.verbose {
 			fmt.Fprintf(w, "    Rule: %s\n", f.RuleID)
-			fmt.Fprintf(w, "    Value: %s\n", f.SecretValue)
+			fmt.Fprintf(w, "    Hash: %s\n", f.SecretHash)
+			fmt.Fprintf(w, "    Value: %s\n", f.MaskedSecret())
 		}
 		
 		fmt.Fprintln(w)

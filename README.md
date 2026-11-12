@@ -18,6 +18,17 @@ dotscrub scans your AI agent configuration files for hardcoded secrets and crede
 
 It runs entirely locally—no data leaves your machine.
 
+### Detection Engine
+
+dotscrub combines two detection layers:
+
+1. **Gitleaks rule library** - Industry-standard patterns for 150+ secret types (GitHub tokens, AWS keys, API keys from major services)
+2. **Agent-specific rules** - Patterns unique to AI agent configs:
+   - MCP environment variable literal values
+   - Authorization/Bearer headers with embedded tokens
+   - Credentials in URLs (database connections, API endpoints)
+   - Saved permission tokens
+
 ## Installation
 
 ### Using go install
@@ -127,12 +138,13 @@ Compatible with GitHub Advanced Security and other security platforms.
 - [x] JSON/YAML/TOML parsing with key path tracking
 - [x] Multiple output formats (text, JSON, SARIF)
 - [x] GitHub Action
+- [x] Integration with gitleaks rules library
+- [x] Always-masked secret output
+- [x] Secret hash for deduplication
 - [ ] Fix mode: move secrets to environment variables
 - [ ] Git pre-commit hook integration
 - [ ] Scan only staged files (`--staged`)
 - [ ] Custom rule definitions
-- [ ] Integration with gitleaks rules
-- [ ] Always-masked secret output
 - [ ] Configuration file support
 
 ## Development
@@ -188,4 +200,6 @@ dotscrub is part of the **Pssht** project—a family of open-source security too
 
 ## Acknowledgments
 
-Inspired by tools like [gitleaks](https://github.com/gitleaks/gitleaks), [trufflehog](https://github.com/trufflesecurity/trufflehog), and the security practices of the AI agent community.
+Built with [gitleaks](https://github.com/gitleaks/gitleaks) (MIT License) for comprehensive secret detection. Also inspired by [trufflehog](https://github.com/trufflesecurity/trufflehog) and the security practices of the AI agent community.
+
+See [NOTICE](NOTICE) for complete attribution and licensing information.
