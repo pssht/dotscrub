@@ -14,13 +14,6 @@ Fixes #(issue)
 - [ ] Documentation update
 - [ ] Refactoring (no functional changes)
 
-## AI Authorship Disclosure
-
-- [ ] This PR contains AI-generated code
-- **Tool used**: [e.g., GitHub Copilot, Cursor, Claude, N/A]
-- **Extent**: [e.g., "AI-suggested implementation, human-reviewed and modified", "100% human-written"]
-- **Human review**: [Brief note on review process or N/A]
-
 ## Changes Made
 
 - Change 1

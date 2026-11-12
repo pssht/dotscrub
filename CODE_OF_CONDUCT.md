@@ -36,15 +36,6 @@ Examples of unacceptable behavior include:
 * Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
-## AI-Authored Contributions
-
-This project welcomes AI-authored code with the following guidelines:
-
-* AI-generated contributions must be disclosed in pull request descriptions
-* All AI-authored code must be reviewed by a human before merging
-* Contributors remain responsible for the quality and correctness of AI-generated code
-* Treat AI-authored contributions with the same standards as human-authored code
-
 ## Enforcement Responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of

@@ -63,33 +63,9 @@ Feature requests are welcome! Please:
    - Describe what changed and why
    - Include before/after examples if relevant
 
-## AI-Authored Contributions
+## Automated Tool Contributions
 
-**dotscrub welcomes AI-authored code**, but with transparency requirements:
-
-- ✅ **Allowed**: PRs written partially or fully by AI agents (GitHub Copilot, Cursor, Claude, etc.)
-- ⚠️ **Required**: Clear disclosure in the PR description
-- 👤 **Mandatory**: Human review and approval before merge
-
-### Disclosure Format
-
-When submitting AI-authored code, include in your PR description:
-
-```markdown
-## AI Authorship Disclosure
-
-- [ ] This PR contains AI-generated code
-- **Tool used**: [e.g., GitHub Copilot, Cursor, Claude]
-- **Extent**: [e.g., "70% AI-generated", "AI-suggested implementation, human-reviewed and modified"]
-- **Human review**: [Brief note on review process]
-```
-
-### Why We Require Disclosure
-
-- **Transparency**: Users should know how code was authored
-- **Quality**: Human review catches AI hallucinations and logic errors
-- **Learning**: Helps us understand AI's role in OSS development
-- **Trust**: Builds confidence in the codebase
+Contributions generated with the assistance of automated tools are welcome, provided they meet the same quality standards as any other contribution and are reviewed by a human maintainer before merge.
 
 ## Development Setup
 
@@ -206,4 +182,4 @@ This avoids triggering GitHub's secret scanning on push.
 - Open a [discussion](https://github.com/pssht/dotscrub/discussions)
 - File an [issue](https://github.com/pssht/dotscrub/issues)
 
-Thank you for contributing to making AI agent security better! 🛡️
+Thank you for contributing to making AI agent security better!

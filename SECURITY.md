@@ -57,8 +57,8 @@ Review findings carefully. When scanning for CI/CD, consider:
 
 | Version | Supported          |
 | ------- | ------------------ |
-| main    | :white_check_mark: |
-| < 1.0   | :x: (pre-release)  |
+| main    | Yes                |
+| < 1.0   | No (pre-release)   |
 
 ## Security Best Practices
 
@@ -104,4 +104,4 @@ For security-related questions that are not vulnerabilities, please:
 - Open a [Discussion](https://github.com/pssht/dotscrub/discussions)
 - Tag with `security` label
 
-Thank you for helping keep dotscrub and its users secure! 🛡️
+Thank you for helping keep dotscrub and its users secure!
